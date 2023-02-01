@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="MAIN" Id="{19271f00-77b4-42b9-839b-a8810c343e66}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	axis: AXIS_REF;
+	iTermBits: DINT;
+	rV : Real;
+	i_iDistance_R AT %I* :DINT;
+	rVref : Real;
+	i_irefV_R AT %I* :DINT;
+	power: MC_POWER;
+	retracted AT %I* : BOOL;
+	extended At %I* :BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//axis.ReadStatus();
+iTermBits := DINT#16#7FFFFFFF;
+rV := 10*DINT_TO_REAL(i_iDistance_R)/iTermBits;
+rVref := 10*DINT_TO_REAL(i_irefV_R)/iTermBits;
+
+power(Axis:=axis, Enable_Positive := NOT retracted, Enable_Negative:= NOT extended);]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="2" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="22" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
