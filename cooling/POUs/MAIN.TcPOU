@@ -4,11 +4,11 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 	axis: AXIS_REF;
-	iTermBits: DINT;
+	iTermBits: INT;
 	rV : Real;
-	i_iDistance_R AT %I* :DINT;
+	i_iDistance_R AT %I* :INT;
 	rVref : Real;
-	i_irefV_R AT %I* :DINT;
+	i_irefV_R AT %I* :INT;
 	power: MC_POWER;
 	retracted AT %I* : BOOL;
 	extended At %I* :BOOL;
@@ -16,10 +16,11 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//axis.ReadStatus();
-iTermBits := DINT#16#7FFFFFFF;
-rV := 10*DINT_TO_REAL(i_iDistance_R)/iTermBits;
-rVref := 10*DINT_TO_REAL(i_irefV_R)/iTermBits;
-
+iTermBits := 32767;
+rV := 10*INT_TO_REAL(i_iDistance_R)/iTermBits;
+rVref := 10*INT_TO_REAL(i_irefV_R)/iTermBits;
+//retracted limit switch is the one close to the motork drive, both limit switches are NO
+// Retract is the postive direction, extend is negative  
 power(Axis:=axis, Enable_Positive := NOT retracted, Enable_Negative:= NOT extended);]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
@@ -28,6 +29,7 @@ power(Axis:=axis, Enable_Positive := NOT retracted, Enable_Negative:= NOT extend
       <LineId Id="7" Count="0" />
       <LineId Id="16" Count="0" />
       <LineId Id="23" Count="0" />
+      <LineId Id="36" Count="0" />
       <LineId Id="22" Count="0" />
     </LineIds>
   </POU>

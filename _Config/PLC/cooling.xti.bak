@@ -886,6 +886,10 @@ External Setpoint Generation:
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
 				<Var>
+					<Name>MAIN.i_iDistance_R</Name>
+					<Type>INT</Type>
+				</Var>
+				<Var>
 					<Name>MAIN.axis.NcToPlc</Name>
 					<Type GUID="{6A65C767-34E5-42BF-AD87-E1A503EAC7BE}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 					<SubVar>
@@ -935,12 +939,8 @@ External Setpoint Generation:
 					</SubVar>
 				</Var>
 				<Var>
-					<Name>MAIN.i_iDistance_R</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
 					<Name>MAIN.i_irefV_R</Name>
-					<Type>DINT</Type>
+					<Type>INT</Type>
 				</Var>
 				<Var>
 					<Name>MAIN.retracted</Name>
@@ -973,12 +973,12 @@ External Setpoint Generation:
 	</Project>
 	<Mappings>
 		<OwnerA Name="cooling Instance">
-			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 9 (EK1200)^Term 11 (EL7047)">
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 10 (EK1200)^Term 3 (EL7047)">
 				<Link VarA="PlcTask Inputs^MAIN.extended" VarB="STM Status^Status^Digital input 2"/>
 				<Link VarA="PlcTask Inputs^MAIN.retracted" VarB="STM Status^Status^Digital input 1"/>
 			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 9 (EK1200)^Term 16 (EL3602)">
-				<Link VarA="PlcTask Inputs^MAIN.i_irefV_R" VarB="AI Inputs Channel 2^Value"/>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 10 (EK1200)^Term 8 (EL3064)">
+				<Link VarA="PlcTask Inputs^MAIN.i_irefV_R" VarB="AI Standard Channel 2^Value"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis 2">
 				<Link VarA="PlcTask Inputs^MAIN.axis.NcToPlc" VarB="Outputs^ToPlc"/>
